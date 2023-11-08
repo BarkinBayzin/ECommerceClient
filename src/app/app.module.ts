@@ -8,12 +8,16 @@ import { ComponentsModule } from "./admin/layout/components/components.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
         AppComponent
     ],
-    providers: [],
+    providers: [
+        {provide: "baseUrl", useValue: "https://localhost:7035/api", multi: true}
+    ],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,
@@ -22,7 +26,9 @@ import { ToastrModule } from 'ngx-toastr';
         UiModule,
         ComponentsModule,
         BrowserAnimationsModule, // required animations module for toastr
-        ToastrModule.forRoot() // ToastrModule added
+        ToastrModule.forRoot(), // ToastrModule added
+        NgxSpinnerModule,
+        HttpClientModule
     ]
 })
 export class AppModule { }
